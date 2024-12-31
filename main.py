@@ -53,11 +53,16 @@ class Obstacle(pygame.sprite.Sprite):
             self.frames = [fly1,fly2]
             y_pos = 210
 
-        else: 
+        elif type == "snail":
             snail_1 = pygame.image.load('graphics/snail/snail1.png').convert_alpha()
             snail_2 = pygame.image.load('graphics/snail/snail2.png').convert_alpha()
             self.frames = [snail_1,snail_2]
             y_pos = 300
+
+        else: 
+            bullet = pygame.image.load('graphics/bullet/bullet.png').convert_alpha()
+            self.frames = [bullet]
+            y_pos = 260
 
         self.animation_index = 0
         self.image = self.frames[self.animation_index]
@@ -135,7 +140,7 @@ while True:
         if game_active:
 
             if event.type == obstacle_timer and game_active:
-                obstacle_group.add(Obstacle(choice(['fly','snail','snail'])))
+                obstacle_group.add(Obstacle(choice(['fly','snail','snail','snail','bullet'])))
 
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
